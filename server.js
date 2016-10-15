@@ -16,7 +16,6 @@ const API = 'http://athmapi.westus.cloudapp.azure.com/athm';
 const requestSession = API + '/requestSession';
 const requestPayment = API + '/requestPayment';
 const verifyPaymentStatus = API + '/verifyPaymentStatus';
-const authParams = 'commUsername=evertec&commPassword=evertec';
 app.get(
   '/', (req, res) => {
     res.send('asdfsad');
@@ -24,25 +23,35 @@ app.get(
 );
 
 // Makes API request to verify the user
-app.post(
-  '/auth', (req, res) => {
-    const url = requestSession + '?' + authParams;
-    fetch(url).then(
-      data => {
-        return data.json();
-      }
-    ).then(
-      json => {
-        res.send(json);
-      }
-    )
-  }
-);
-
-// send API request to request payment
+// We need the phone number, username, password, ammount
 app.get(
   '/auth', (req, res) => {
-    const url = requestPayment + '?' + authParams;
+    const queryString = 'commUsername=evertec&commPassword=evertec';
+    const url = requestSession + '?' + queryString;
+    const amount = 300.25;
+    const phoneNumber = 7873455434;
+    fetch(url).then(
+      data => {
+        return data.json();
+      }
+    ).then(
+      json => {
+        json.amount = amount;
+        json.phoneNumber = phoneNumber;
+        res.send(json);
+      }
+    )
+  }
+);
+
+// Makes API request to make the transaction
+app.get(
+  '/auth', (req, res) => {
+    const token = '';
+    const phone = '';
+    const amount = '';
+    const queryString = 'token=' + token + 'phone=' + phone + 'amount=' + amount;
+    const url = requestPayment + '?' + queryString;
     fetch(url).then(
       data => {
         return data.json();
@@ -55,6 +64,24 @@ app.get(
   }
 );
 
+// Makes API request to verify payment
+app.get(
+  '/auth', (req, res) => {
+    const token = '';
+    const referenceNumber = '';
+    const queryString = 'token=' + token + 'referenceNumber=' + referenceNumber;
+    const url = requestPayment + '?' + queryString;
+    fetch(url).then(
+      data => {
+        return data.json();
+      }
+    ).then(
+      json => {
+        res.send(json);
+      }
+    )
+  }
+);
 
 // Server Setup
 const port = process.env.PORT || 3090;
