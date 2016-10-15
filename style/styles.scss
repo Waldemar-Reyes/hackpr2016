@@ -1,3 +1,26 @@
 body {
-  background: red;
+  padding: 0 15px;
+  margin: 0 auto;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  box-shadow: 1px 1px 20px #888;
+  background: #444;
+}
+
+.container {
+  min-height: 100vh;
+  max-width: 800px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  background: #fff;
+}
+
+.test-api {
+  label {
+    display: block;
+  }
+
+  button {
+    margin: 5px 0;
+  }
 }
