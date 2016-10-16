@@ -21,14 +21,14 @@ class SignIn extends Component {
   componentWillReceiveProps(nextProps) {
     const token = nextProps.token;
     if (token) {
-      this.context.router.push('/APITest2');
+      this.context.router.push('/checkout');
     }
   }
 
   componentWillMount() {
     const token = this.props.token;
     if (token) {
-      this.context.router.push('/APITest2');
+      this.context.router.push('/checkout');
     }
   }
 
