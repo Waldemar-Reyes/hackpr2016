@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot",
     "server": "nodemon server.js --harmony",
+    "bundle": "webpack --config webpack.heroku.config.js -p",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "lint": "./node_modules/eslint/bin/eslint.js . --ext .js --ext .jsx || true",
@@ -53,13 +54,16 @@
     "jsdom": "^8.1.0",
     "lodash": "^3.10.1",
     "node-fetch": "1.6.3",
+    "qrcode-reader": "0.2.2",
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
+    "react-simplewebrtc": "git+https://github.com/tech-dojo/react-simplewebrtc.git",
     "redux": "^3.0.4",
     "redux-thunk": "2.1.0",
+    "simplewebrtc": "2.2.0",
     "webpack": "1.13.2"
   }
 }
