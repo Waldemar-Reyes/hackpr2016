@@ -1,4 +1,4 @@
-import { SEND_REQUEST, CONFIRM_REQUEST } from './types';
+import { SEND_REQUEST, CONFIRM_REQUEST, VALID_CODE } from './types';
 
 // API calls
 const API = 'http://localhost:3090';
@@ -71,5 +71,13 @@ export const confirmTransaction = (token, phone, amount) => {
         console.log('Request error' + ex);
       }
     );
+  }
+};
+
+export const validCode = (phone, amount) => {
+  console.log('action ran');
+  return {
+    type: VALID_CODE,
+    payload: { phone, amount }
   }
 };

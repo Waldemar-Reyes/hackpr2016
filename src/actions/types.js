@@ -1,2 +1,3 @@
 export const SEND_REQUEST = 'SEND_REQUEST';
 export const CONFIRM_REQUEST = 'CONFIRM_REQUEST';
+export const VALID_CODE = 'VALID_CODE';

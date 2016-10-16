@@ -5,7 +5,6 @@ import Checkout from './components/Checkout';
 import Clasificados from './components/Clasificados';
 import SignIn from './components/SignIn';
 import Confirmation from './components/Confirmation';
-// import Scan from './components/Scan';
 import Snapshot from './components/Snapshot';
 
 export default (

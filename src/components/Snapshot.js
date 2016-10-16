@@ -1,27 +1,46 @@
 import React, { Component, PropTypes } from 'react';
 import QrCode from 'qrcode-reader';
+import { bindActionCreators } from'redux';
+import { connect } from'react-redux';
+import { validCode } from '../actions';
 var qr = new QrCode();
-qr.callback = function (result, err) {
-  if (result) {
-    console.log(result)
-  } else {
-    console.log('no URL');
-  }
-};
 
 class Snapshot extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       videoRef: null,
       canvasRef: null,
       buttonRef: null,
       img: null,
+      phone: null,
+      amount: null,
+    };
+    const self = this;
+
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  componentWillReceiveProps(nextProps) {
+    const phone = nextProps.phone;
+    const amount = nextProps.amount;
+    if (phone && amount) {
+      this.context.router.push('/signin');
+    }
+  }
+
+  componentWillMount() {
+    const phone = this.props.phone;
+    const amount = this.props.amount;
+    if (phone && amount) {
+      this.context.router.push('/signin');
     }
   }
 
   componentDidMount() {
-
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -64,11 +83,23 @@ class Snapshot extends Component {
     );
     const dataUrl = canvas.toDataURL("image/png");
     const data = context.getImageData(0, 0, 300, 300);
+    qr.callback = (result, err) => {
+      if (result) {
+        console.log(result);
+        const newResult = result.split(':');
+        const phone = newResult[0];
+        const amount = newResult[1];
+        this.props.actions.validCode(phone, amount);
+      } else {
+        console.log('no URL');
+      }
+    };
     qr.decode(data);
     this.setState({ img: dataUrl });
   };
 
   render() {
+    console.log(this.state);
     const canvas = this.state.canvasRef;
     const video = this.state.videoRef;
 
@@ -121,14 +152,16 @@ class Snapshot extends Component {
   }
 }
 
-export
-default
-Snapshot;
+const mapStateToProps = (state) => {
+  return {
+    appState: state.appReducer,
+    phone: state.appReducer.phone,
+    amount: state.appReducer.amount,
+  }
+};
 
-// default props
-Snapshot
-  .defaultProps = {};
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators({ validCode }, dispatch) };
+};
 
-// propTypes
-Snapshot
-  .propTypes = {};
+export default connect(mapStateToProps, mapDispatchToProps)(Snapshot);
