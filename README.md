@@ -1,6 +1,9 @@
-# ATH Movil Web Checkout
+# ATH Movil Web Checkout & ATH Movil QR CODE Scanner
+
 
 Un boton para finalizar las compras en diferentes paginas como clasificados online, facebook, etc.
+
+Un QR Code scanner para pagar directamente por servicios y productos utilizando ATH Movil.
 
 ## Para correr la aplicacion
 

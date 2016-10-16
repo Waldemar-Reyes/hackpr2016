@@ -60,10 +60,8 @@
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
-    "react-simplewebrtc": "git+https://github.com/tech-dojo/react-simplewebrtc.git",
     "redux": "^3.0.4",
     "redux-thunk": "2.1.0",
-    "simplewebrtc": "2.2.0",
     "webpack": "1.13.2"
   }
 }
