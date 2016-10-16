@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { confirmTransaction } from '../actions';
 
 class APITest2 extends Component {
-  // Send Token, phone amount
   constructor() {
     super();
   }
@@ -13,19 +12,19 @@ class APITest2 extends Component {
     router: PropTypes.object
   };
 
-  // componentWillReceiveProps(nextProps) {
-  //   const token = nextProps.token;
-  //   if (token) {
-  //     this.context.router.push('/APITest2');
-  //   }
-  // }
-  //
-  // componentWillMount() {
-  //   const token = this.props.token;
-  //   if (token) {
-  //     this.context.router.push('/APITest2');
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    const status = nextProps.status;
+    if (status === 'COMPLETED') {
+      this.context.router.push('/APITest3');
+    }
+  }
+
+  componentWillMount() {
+    const status = this.props.status;
+    if (status === 'COMPLETED') {
+      this.context.router.push('/APITest3');
+    }
+  }
 
   render() {
     const { confirmTransaction } = this.props.actions;
@@ -51,6 +50,7 @@ class APITest2 extends Component {
 const mapStateToProps = (state) => {
   return {
     appState: state.appReducer,
+    status: state.appReducer.status,
   }
 };
 

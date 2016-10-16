@@ -66,7 +66,6 @@ app.post(
           }
         ).then(
           json => {
-            console.log('last request', json);
             return res.send(json);
           }
         );

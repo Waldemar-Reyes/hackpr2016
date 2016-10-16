@@ -6,12 +6,14 @@ import Clasificados from './components/Checkout';
 import SignIn from './components/Checkout';
 import APITest from './components/APITest';
 import APITest2 from './components/APITest2';
+import APITest3 from './components/APITest3';
 
 export default (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={APITest}/>
       <Route path="APITest2" component={APITest2}/>
+      <Route path="APITest3" component={APITest3}/>
       <Route component={Clasificados}/>
       <Route path="checkout" component={Checkout}/>
       <Route path="signIn" component={SignIn}/>
