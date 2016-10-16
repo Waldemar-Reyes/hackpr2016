@@ -18,7 +18,7 @@ const requestPayment = API + '/requestPayment';
 const verifyPaymentStatus = API + '/verifyPaymentStatus';
 
 // Makes API request to verify the user
-// We need the phone number, username, password, ammount
+// We need the phone number, username, password, amount
 app.post(
   '/auth', (req, res) => {
     const username = req.body.username;
@@ -43,31 +43,11 @@ app.post(
 );
 
 // Makes API request to make the transaction
-app.get(
-  '/auth', (req, res) => {
-    const token = '';
-    const phone = '';
-    const amount = '';
-    const queryString = 'token=' + token + 'phone=' + phone + 'amount=' + amount;
-    const url = requestPayment + '?' + queryString;
-    fetch(url).then(
-      data => {
-        return data.json();
-      }
-    ).then(
-      json => {
-        res.send(json);
-      }
-    )
-  }
-);
-
-// Makes API request to verify payment
-app.get(
-  '/auth', (req, res) => {
-    const token = '';
-    const referenceNumber = '';
-    const queryString = 'token=' + token + 'referenceNumber=' + referenceNumber;
+app.post('/confirm', (req, res) => {
+    const token = req.body.token;
+    const amount = req.body.amount;
+    const phone = req.body.phone;
+    const queryString = 'token=' + token + '&phone=' + phone + '&amount=' + amount;
     const url = requestPayment + '?' + queryString;
     fetch(url).then(
       data => {
