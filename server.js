@@ -16,20 +16,18 @@ const API = 'http://athmapi.westus.cloudapp.azure.com/athm';
 const requestSession = API + '/requestSession';
 const requestPayment = API + '/requestPayment';
 const verifyPaymentStatus = API + '/verifyPaymentStatus';
-app.get(
-  '/', (req, res) => {
-    res.send('asdfsad');
-  }
-);
 
 // Makes API request to verify the user
 // We need the phone number, username, password, ammount
-app.get(
+app.post(
   '/auth', (req, res) => {
-    const queryString = 'commUsername=evertec&commPassword=evertec';
+    const username = req.body.username;
+    const password = req.body.password;
+    const amount = req.body.amount;
+    const phone = req.body.phone;
+    console.log(amount, phone, username, password);
+    const queryString = 'commUsername=' + username + '&commPassword=' + password;
     const url = requestSession + '?' + queryString;
-    const amount = 300.25;
-    const phoneNumber = 7873455434;
     fetch(url).then(
       data => {
         return data.json();
@@ -37,7 +35,7 @@ app.get(
     ).then(
       json => {
         json.amount = amount;
-        json.phoneNumber = phoneNumber;
+        json.phone = phone;
         res.send(json);
       }
     )

@@ -6,7 +6,19 @@ const auth = `${API}/auth`;
 
 export const authRequest = (username, password, phone, amount) => {
   return dispatch => {
-    fetch(auth).then(
+    fetch(
+      auth, {
+        method: 'post',
+        body: JSON.stringify(
+          {
+            username,
+            password,
+            phone,
+            amount
+          }
+        )
+      }
+    ).then(
       res => {
         return res.json();
       }
@@ -18,6 +30,10 @@ export const authRequest = (username, password, phone, amount) => {
             payload: json,
           }
         );
+      }
+    ).catch(
+      ex => {
+        console.log('Request error' + ex);
       }
     );
   }
