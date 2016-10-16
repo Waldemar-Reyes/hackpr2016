@@ -7,17 +7,34 @@ class APITest extends Component {
   constructor() {
     super();
     this.state = {
-      phone: '567-765-6767',
+      phone: '787-378-4608',
       amount: 12.99,
       username: 'evertec',
       password: 'evertec',
     }
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  componentWillReceiveProps(nextProps) {
+    const token = nextProps.token;
+    if (token) {
+      this.context.router.push('/APITest2');
+    }
+  }
+
+  componentWillMount() {
+    const token = this.props.token;
+    if (token) {
+      this.context.router.push('/APITest2');
+    }
+  }
+
   render() {
     const { authRequest } = this.props.actions;
     const { username, password, phone, amount } = this.state;
-    console.log('app props', this.props);
     return (
       <div className="text-center test-api">
         <div>
@@ -70,6 +87,7 @@ class APITest extends Component {
 const mapStateToProps = (state) => {
   return {
     appState: state.appReducer,
+    token: state.appReducer.token,
   }
 };
 

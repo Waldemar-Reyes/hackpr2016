@@ -1,0 +1,10 @@
+body {
+    background-image: url("https://c2.staticflickr.com/6/5640/30055029760_0e3391942d_o.png");
+}
+
+.moveimage
+{
+    position: absolute;
+    margin-top: 290px;
+    margin-left: 200px;
+}

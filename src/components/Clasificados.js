@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import {guitarra} from '../../webpages/clasificadosReact.js';
 
 class Clasificados extends Component {
   constructor() {
@@ -7,10 +8,7 @@ class Clasificados extends Component {
   }
 
   render() {
-
-    return (
-      null
-    );
+    return null;
   }
 }
 

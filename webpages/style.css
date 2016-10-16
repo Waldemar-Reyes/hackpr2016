@@ -25,7 +25,7 @@ body {
 }
 
 .buttonGray {
-background-color:#707B7C;
+  background-color:#707B7C;
   color: white;
   cursor: pointer;
   display: inline-block;
@@ -33,4 +33,4 @@ background-color:#707B7C;
   margin: 5px 5px;
   padding: 10px 113px;
   text-align: center;
-}
+  }​
