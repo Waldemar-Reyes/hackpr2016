@@ -12,14 +12,14 @@ class Checkout extends Component {
 	componentWillReceiveProps(nextProps) {
 		const status = nextProps.status;
 		if (status === 'COMPLETED') {
-			this.context.router.push('/APITest3');
+			this.context.router.push('/confirmation');
 		}
 	}
 
 	componentWillMount() {
 		const status = this.props.status;
 		if (status === 'COMPLETED') {
-			this.context.router.push('/APITest3');
+			this.context.router.push('/confirmation');
 		}
 	}
 
