@@ -1,17 +1,13 @@
 // @flow
-import { Map } from 'immutable';
+import { SEND_REQUEST } from '../actions/types';
 
-const initialState = Map(
-  {
-    test: 'Hello',
-  }
-);
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case 'type': {
-      return state;
+    case SEND_REQUEST: {
+      return Object.assign({}, state, action.payload);
     }
 
     default: {
